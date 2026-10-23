@@ -46,8 +46,12 @@ export default function Navbar() {
     >
       <nav
         aria-label="Primary"
-        className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-3 py-2.5 transition-all duration-500 sm:px-5 ${
-          scrolled || open ? 'glass bg-ink-950/70 shadow-2xl shadow-black/40' : 'border border-transparent'
+        // backdrop-blur only from md up: on phones a blurred fixed bar must be re-rendered on every
+        // scroll frame, which made scrolling and the menu janky
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-[background-color,border-color,box-shadow] duration-300 sm:px-5 ${
+          scrolled || open
+            ? 'border-white/10 bg-ink-950/95 shadow-2xl shadow-black/40 md:bg-ink-950/70 md:backdrop-blur-xl'
+            : 'border-transparent'
         }`}
       >
         <a href="#home" className="group flex items-center gap-2.5 rounded-xl" aria-label={`${profile.name} — home`}>
@@ -103,17 +107,8 @@ export default function Navbar() {
             onClick={() => setOpen((o) => !o)}
             className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 text-white transition-colors hover:bg-white/5 md:hidden"
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={open ? 'close' : 'open'}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {open ? <HiXMark className="h-6 w-6" /> : <HiBars3 className="h-6 w-6" />}
-              </motion.span>
-            </AnimatePresence>
+            {/* instant icon swap — the previous exit-then-enter animation delayed feedback by ~400ms */}
+            {open ? <HiXMark aria-hidden className="h-6 w-6" /> : <HiBars3 aria-hidden className="h-6 w-6" />}
           </button>
         </div>
       </nav>
@@ -123,28 +118,24 @@ export default function Navbar() {
           <>
             <motion.div
               aria-hidden
-              className="fixed inset-0 -z-10 bg-ink-950/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 -z-10 bg-ink-950/75 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
               onClick={() => setOpen(false)}
             />
             <motion.div
               id="mobile-menu"
-              className="glass mx-auto mt-2 max-w-6xl rounded-2xl bg-ink-900/90 md:hidden"
-              initial={{ opacity: 0, y: -12, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="mx-auto mt-2 max-w-6xl rounded-2xl border border-white/10 bg-ink-900 shadow-2xl shadow-black/50 md:hidden"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
             >
               <ul className="flex flex-col p-3">
-                {navLinks.map((link, i) => (
-                  <motion.li
-                    key={link.id}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 * i }}
-                  >
+                {navLinks.map((link) => (
+                  <li key={link.id}>
                     <a
                       href={`#${link.id}`}
                       onClick={() => setOpen(false)}
@@ -156,7 +147,7 @@ export default function Navbar() {
                       {link.label}
                       {active === link.id && <span className="h-2 w-2 rounded-full bg-accent-400" />}
                     </a>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
               <div className="flex items-center justify-between gap-3 border-t border-white/10 p-4">

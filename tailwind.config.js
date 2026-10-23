@@ -46,11 +46,21 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
+      // transform-only keyframes run on the compositor, so the hero orb costs no JS per frame
       animation: {
         blob: 'blob 14s ease-in-out infinite',
         shimmer: 'shimmer 6s linear infinite',
         marquee: 'marquee 30s linear infinite',
+        'spin-14': 'spin 14s linear infinite',
+        'spin-30': 'spin 30s linear infinite',
+        'spin-40-rev': 'spin 40s linear infinite reverse',
+        float: 'float 5s ease-in-out infinite',
+        'float-slow': 'float 6s ease-in-out infinite',
       },
     },
   },

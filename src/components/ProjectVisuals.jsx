@@ -42,7 +42,7 @@ export function AuthVisual() {
     <Frame className="bg-gradient-to-br from-brand-600/30 via-ink-900 to-accent-500/20">
       <div className="relative flex h-full flex-col items-center justify-center gap-6 p-6 sm:p-8">
         {/* Login card */}
-        <div className="w-full max-w-[280px] rounded-2xl border border-white/10 bg-ink-950/80 p-5 shadow-2xl backdrop-blur">
+        <div className="w-full max-w-[280px] rounded-2xl border border-white/10 bg-ink-950/90 p-5 shadow-2xl">
           <div className="mb-4 flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-white">
               <HiOutlineLockClosed className="h-4 w-4" />

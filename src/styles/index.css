@@ -4,6 +4,7 @@
 
 @layer base {
   html {
+    color-scheme: dark;
     /* Framer Motion's useScroll measures offsets against this container */
     position: relative;
     scroll-behavior: smooth;

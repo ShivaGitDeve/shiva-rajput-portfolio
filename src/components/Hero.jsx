@@ -4,7 +4,6 @@ import { profile, socialList } from '../data/portfolio'
 import useTypewriter from '../hooks/useTypewriter'
 import ResumeButton from './ResumeButton'
 import HeroVisual from './HeroVisual'
-import { useMediaQuery } from './Effects'
 
 const ease = [0.22, 1, 0.36, 1]
 const container = {
@@ -41,9 +40,6 @@ function RoleTicker() {
 }
 
 export default function Hero() {
-  // The orb is desktop-only; don't mount it (and its infinite animations) on smaller screens.
-  const showVisual = useMediaQuery('(min-width: 1024px)')
-
   return (
     <section
       id="home"
@@ -79,7 +75,7 @@ export default function Hero() {
             className="mt-4 font-display text-[clamp(2.25rem,8vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-white"
           >
             <MaskedWords text="Building Digital Experiences" />
-            <MaskedWords text="That Feel Different." className="gradient-text animate-shimmer" />
+            <MaskedWords text="That Feel Different." className="gradient-text md:animate-shimmer" />
           </motion.h1>
 
           <motion.div
@@ -129,15 +125,14 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {showVisual && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3, ease }}
-          >
-            <HeroVisual />
-          </motion.div>
-        )}
+        {/* Shown at every width: beside the text on desktop, below it on phones and tablets */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.3, ease }}
+        >
+          <HeroVisual />
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
