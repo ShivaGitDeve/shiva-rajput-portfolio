@@ -186,7 +186,7 @@ export const projects = [
     subtitle: 'Full Stack SaaS Application',
     year: '2026',
     featured: true,
-    visual: 'auth',
+    visual: 'saas',
     description:
       'A full-stack authentication system with registration and login, JWT-based authentication with refresh token rotation, protected routes and role-based access control.',
     points: [
