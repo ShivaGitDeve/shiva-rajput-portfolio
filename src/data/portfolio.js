@@ -4,13 +4,14 @@
 import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaGithub, FaLinkedinIn, FaHtml5, FaCss3Alt, FaDatabase } from 'react-icons/fa6'
 import {
   SiJavascript, SiRedux, SiTailwindcss, SiBootstrap, SiExpress, SiJsonwebtokens,
-  SiMysql, SiMongodb, SiPostgresql, SiStreamlit,
+  SiMysql, SiMongodb, SiPostgresql, SiStreamlit, SiLangchain,
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
 import {
   HiOutlineEnvelope, HiOutlineArrowsRightLeft, HiOutlineChatBubbleLeftRight,
   HiOutlineMicrophone, HiOutlineCpuChip, HiOutlineCodeBracket, HiOutlineServerStack,
   HiOutlineShieldCheck, HiOutlineSparkles, HiOutlineCircleStack, HiOutlineCommandLine,
+  HiOutlineDocumentMagnifyingGlass,
 } from 'react-icons/hi2'
 
 export const profile = {
@@ -162,6 +163,8 @@ export const skillGroups = [
       { name: 'Conversational AI', icon: HiOutlineChatBubbleLeftRight, color: '#A78BFA' },
       { name: 'Speech Recognition', icon: HiOutlineMicrophone, color: '#22D3EE' },
       { name: 'Transformer Models', icon: HiOutlineCpuChip, color: '#C084FC' },
+      { name: 'RAG', icon: HiOutlineDocumentMagnifyingGlass, color: '#34D399' },
+      { name: 'LangChain', icon: SiLangchain, color: '#1C9C8C' },
     ],
   },
   {
@@ -179,8 +182,8 @@ export const skillGroups = [
 export const projects = [
   {
     id: 'secureauth',
-    title: 'SecureAuth',
-    subtitle: 'Full Stack Authentication System',
+    title: 'Team & Project Management SaaS',
+    subtitle: 'Full Stack SaaS Application',
     year: '2026',
     featured: true,
     visual: 'auth',
